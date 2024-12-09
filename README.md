@@ -26,7 +26,7 @@ Some variable can be passed through the ansible CLI `--extra-vars` to install on
 
 
 ```bash
-$ ansible-playbook launch.yml --extra-vars="all=true" -K
+$ ansible-playbook ansible/launch.yml --extra-vars="all=true" -K
 ```
 
 ---
