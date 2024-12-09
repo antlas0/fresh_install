@@ -16,7 +16,6 @@ Some variable can be passed through the ansible CLI `--extra-vars` to install on
 |---|---|
 |`all`|All software|
 |`basic=true`|Basic useful software|
-|`user_extra=true`||
 |`tex=true`|Latex utilities|
 |`user_extra=true`|Extra user stuff|
 |`development=true`|Development tools|
