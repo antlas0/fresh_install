@@ -1,0 +1,11 @@
+- name: Ensure directory exists for Nextcloud Desktop Client
+  file:
+    path: "/usr/local/bin/nextcloud-client"
+    state: directory
+    mode: '0755'
+
+- name: Download Nextcloud Desktop Client AppImage
+  get_url:
+    url: "https://github.com/nextcloud-releases/desktop/releases/latest/download/Nextcloud-3.12.3-x86_64.AppImage"
+    dest: "/usr/local/bin/nextcloud-client/nextcloud-desktop"
+    mode: '0755'

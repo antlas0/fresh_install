@@ -1,0 +1,19 @@
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+  listen: "apt sync"
+
+- name: Remove useless packages from the cache
+  ansible.builtin.apt:
+    autoclean: yes
+  listen: "apt sync"
+
+- name: Remove dependencies that are no longer required
+  ansible.builtin.apt:
+    autoremove: yes
+  listen: "apt sync"
+
+
+- name: reload environment
+  ansible.builtin.command: "source /etc/environment"
+  listen: "reload environment"

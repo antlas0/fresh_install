@@ -1,0 +1,7 @@
+- name: Install packages
+  hosts: localhost
+  become: yes
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/usr/sbin/"
+  roles:
+    - "fresh_install"

@@ -1,0 +1,9 @@
+- name: Install misc packages
+  ansible.builtin.apt:
+    state:
+      present
+    pkg: "{{ item }}"
+  with_items:
+    - 0ad
+  notify:
+    - "apt sync"

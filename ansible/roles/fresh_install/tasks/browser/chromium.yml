@@ -1,0 +1,10 @@
+- name: Install chromium browser
+  ansible.builtin.apt:
+    state:
+      present
+    pkg: "{{ item }}"
+  with_items:
+    - chromium-browser
+  notify:
+    - "apt sync"
+

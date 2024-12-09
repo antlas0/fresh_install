@@ -1,0 +1,74 @@
+########
+# basic
+########
+- include_tasks: ./basic.yml
+  when: (basic is defined and basic == 'true') or (all is defined and all == 'true')
+
+###################
+# extra user tools
+###################
+- include_tasks: ./user_extra.yml
+  when: (user_extra is defined and user_extra == 'true') or (all is defined and all == 'true')
+
+########
+# latex
+########
+- include_tasks: ./tex.yml
+  when: (tex is defined and tex == 'true') or (all is defined and all == 'true')
+
+##############
+# development
+##############
+- include_tasks: ./development.yml
+  when: (development is defined and development == 'true') or (all is defined and all == 'true')
+
+################
+# network tools
+################
+- include_tasks: ./network/debug.yml
+  when: (network is defined and network == 'debug') or (all is defined and all == 'true')
+
+- include_tasks: ./network/utilities.yml
+  when: (network is defined and network == 'utilities') or (all is defined and all == 'true')
+
+##############
+# advanced
+##############
+- include_tasks: ./admin.yml
+  when: (admin is defined and admin == 'true') or (all is defined and all == 'true')
+
+########
+# games
+########
+- include_tasks: ./games.yml
+  when: (games is defined and games == 'true') or (all is defined and all == 'true')
+
+############
+# messaging 
+############
+- include_tasks: ./messaging/signal.yml
+  when: (messaging is defined and messaging == 'signal') or (all is defined and all == 'true')
+
+- include_tasks: ./messaging/telegram.yml
+  when: (messaging is defined and messaging == 'telegram') or (all is defined and all == 'true')
+  
+- include_tasks: ./messaging/element.yml
+  when: (messaging is defined and messaging == 'element') or (all is defined and all == 'true')
+
+###########
+# browsers
+###########
+- include_tasks: ./browser/brave.yml
+  when: (browser is defined and browser == 'brave') or (all is defined and all == 'true')
+
+#############
+# multimedia
+#############
+- include_tasks: ./multimedia.yml
+  when: (multimedia is defined and multimedia == 'basic') or (all is defined and all == 'true')
+
+- include_tasks: ./multimedia/nextcloud.yml
+  when: (multimedia is defined and multimedia == 'nextcloud') or (all is defined and all == 'true')
+
+- include_tasks: ./multimedia/spotify.yml
+  when: (multimedia is defined and multimedia == 'spotify') or (all is defined and all == 'true')

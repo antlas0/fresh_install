@@ -1,0 +1,11 @@
+- name: Install multimedia packages
+  ansible.builtin.apt:
+    state:
+      present
+    pkg: "{{ item }}"
+  with_items:
+    - kdenlive
+    - darktable
+    - rawtherapee
+  notify:
+    - "apt sync"

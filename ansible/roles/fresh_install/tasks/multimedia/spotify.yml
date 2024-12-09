@@ -1,0 +1,20 @@
+  - name: Download Spotify GPG key
+    get_url:
+      url: "https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg"
+      dest: "/etc/apt/trusted.gpg.d/spotify.gpg"
+      mode: '0644'
+
+  - name: Add Spotify repository
+    lineinfile:
+      path: /etc/apt/sources.list.d/spotify.list
+      create: yes
+      line: 'deb http://repository.spotify.com stable non-free'
+
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+
+  - name: Install Spotify Client
+    apt:
+      name: spotify-client
+      state: present

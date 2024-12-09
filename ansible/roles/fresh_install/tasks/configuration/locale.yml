@@ -1,0 +1,2 @@
+- name: Update locale settings to fr_FR.UTF-8 
+  command: update-locale LANG=fr_FR.UTF-8 LC_MESSAGES=POSIX

@@ -1,0 +1,22 @@
+- name: Download Telegram Desktop installer
+  get_url:
+    url: "https://telegram.org/dl/desktop/linux"
+    dest: "/tmp/telegram-desktop-linux.tgz"
+
+- name: Create directory for Telegram in /usr/local/bin
+  file:
+    path: "/usr/local/bin/telegram"
+    state: directory
+    mode: '0755'
+
+- name: Extract Telegram Desktop installer to /usr/local/bin/telegram
+  unarchive:
+    src: "/tmp/telegram-desktop-linux.tgz"
+    dest: "/usr/local/bin/telegram"
+    remote_src: yes
+
+- name: Set permissions for Telegram binaries
+  file:
+    path: "/usr/local/bin/telegram"
+    recurse: yes
+    mode: '0755'

@@ -1,0 +1,27 @@
+- name: Install tex packages
+  ansible.builtin.apt:
+    state:
+      present
+    pkg: "{{ item }}"
+  with_items:
+    - tex-common
+    - tex-gyre
+    - texlive-base
+    - texlive-binaries
+    - texlive-fonts-extra
+    - texlive-fonts-extra-links
+    - texlive-fonts-recommended
+    - texlive-lang-french
+    - texlive-lang-greek
+    - texlive-latex-base
+    - texlive-latex-extra
+    - texlive-latex-recommended
+    - texlive-pictures
+    - texlive-plain-generic
+    - texlive-science
+    - texlive-xetex
+    - texstudio
+    - texstudio-doc
+    - texstudio-l10n
+  notify:
+    - "apt sync"

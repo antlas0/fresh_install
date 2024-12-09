@@ -1,0 +1,13 @@
+- name: Install computing tools packages
+  ansible.builtin.apt:
+    state:
+      present
+    pkg: "{{ item }}"
+  with_items:
+    - dmidecode
+    - htop
+    - lshw
+    - nano
+    - tree
+  notify:
+    - "apt sync"

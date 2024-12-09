@@ -1,0 +1,17 @@
+- name: Install development packages
+  ansible.builtin.apt:
+    state:
+      present
+    pkg: "{{ item }}"
+  with_items:
+    - vim
+    - git
+    - make
+    - r-base
+    - r-base-core
+    - r-base-dev
+    - r-base-html
+    - valgrind
+    - build-essential
+  notify:
+    - "apt sync"

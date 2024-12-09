@@ -1,0 +1,31 @@
+
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - wget
+    - apt-transport-https
+
+- name: Download Element Desktop archive keyring
+  get_url:
+    url: "https://packages.element.io/debian/element-io-archive-keyring.gpg"
+    dest: "/usr/share/keyrings/element-io-archive-keyring.gpg"
+
+- name: Add Element Desktop repository
+  blockinfile:
+    path: /etc/apt/sources.list.d/element-io.list
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item }}"
+    block: |
+      deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main
+  become: yes
+  loop: [1]
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install Element Desktop
+  apt:
+    name: element-desktop
+    state: present

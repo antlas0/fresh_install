@@ -1,0 +1,32 @@
+- name: Install signal prerequisites 
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - wget
+    - gnupg
+
+- name: Add Signal Desktop official public software signing key
+  shell: "wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg"
+  args:
+    creates: "/usr/share/keyrings/signal-desktop-keyring.gpg"
+
+#FIXME: release name hardcoded here
+# ansible_facts['lsb']['codename']
+- name: Add Signal Desktop repository
+  blockinfile:
+    path: /etc/apt/sources.list.d/signal-xenial.list
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item }}"
+    block: |
+      deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
+  become: yes
+  loop: [1]
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install Signal Desktop
+  apt:
+    name: signal-desktop
+    state: present

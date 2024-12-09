@@ -1,0 +1,21 @@
+- name: Install basic desktop packages
+  ansible.builtin.apt:
+    state:
+      present
+    pkg: "{{ item }}"
+  with_items:
+    - curl
+    - wget
+    - evince
+    - thunderbird
+    - libreoffice
+    - vlc
+    - openvpn
+    - network-manager-openvpn-gnome
+    - firefox
+    - gparted
+    - gpg
+    - gzip
+    - keepassxc
+  notify:
+  - "apt sync"

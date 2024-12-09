@@ -1,0 +1,14 @@
+- name: Install extra desktop packages
+  ansible.builtin.apt:
+    state:
+      present
+    pkg: "{{ item }}"
+  with_items:
+    - kiwix
+    - rsibreak
+    - liferea
+    - cheese
+    - transmission-common
+    - transmission-gtk
+  notify:
+    - "apt sync"

@@ -1,0 +1,12 @@
+- name: Install computing tools packages
+  ansible.builtin.apt:
+    state:
+      present
+    pkg: "{{ item }}"
+  with_items:
+    - rsnapshot
+    - rsync
+    - w3m
+    - minicom
+  notify:
+    - "apt sync"
